@@ -14,6 +14,6 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
     <flow name="ImplementationFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/ex" doc:name="HTTP"/>
         <set-payload value="hello World!!!" doc:name="Set Payload"/>
-        <logger message="Output:  #[payload] hiiii" level="INFO" doc:name="Logger"/>
+        <logger message="Output:  #[payload] welcome" level="INFO" doc:name="Logger"/>
     </flow>
 </mule>
