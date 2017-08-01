@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.mulesoft</groupId>
+        <artifactId>munit</artifactId>
+        <version>1.3.2</version>
+    </parent>
+    <groupId>com.mulesoft.munit</groupId>
+    <artifactId>munit-core</artifactId>
+    <packaging>pom</packaging>
+    <name>Munit core</name>
+
+
+    <modules>
+        <module>munit-common</module>
+        <module>munit-assert</module>
+        <module>munit-mock</module>
+        <module>munit-runner</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>${cobertura.version}</version>
+                <configuration>
+                    <skip>${skipTests}</skip>
+                    <check>
+                        <lineRate>71</lineRate>
+                        <branchRate>60</branchRate>
+                        <haltOnFailure>true</haltOnFailure>
+                        <packageLineRate>78</packageLineRate>
+                        <packageBranchRate>70</packageBranchRate>
+                        <totalLineRate>86</totalLineRate>
+                        <totalBranchRate>75</totalBranchRate>
+                    </check>
+                    <instrumentation>
+                        <excludes>
+                            <exclude>org/mule/munit/runner/java/JunitTestSuiteBuilder.class</exclude>
+                            <exclude>org/mule/munit/runner/mule/result/notification/DummyNotificationListener.class
+                            </exclude>
+                            <exclude>org/mule/munit/runner/output/LogPrinter.class</exclude>
+                            <exclude>org/mule/munit/runner/MunitLoggerConfigurer.class</exclude>
+                            <!--Improve tests over this package-->
+                            <exclude>org/mule/munit/common/adapters/*.class</exclude>
+
+                            <exclude>org/mule/munit/runner/remote/*.class</exclude>
+                            <exclude>org/mule/munit/runner/mule/context/*.class</exclude>
+
+                            <exclude>org/mule/munit/assertion/mel/utils/*.class</exclude>
+                            <exclude>org/mule/munit/common/registry/*.class</exclude>
+                        </excludes>
+                    </instrumentation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>clean</goal>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.5.2</version>
+                <configuration>
+                    <check />
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+
+</project>

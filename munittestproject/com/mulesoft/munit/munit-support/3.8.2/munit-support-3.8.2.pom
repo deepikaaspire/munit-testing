@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mulesoft.munit</groupId>
+    <artifactId>munit-support</artifactId>
+    <version>3.8.2</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <jdk7Name>JavaSE-1.7</jdk7Name>
+        <jdk.version>1.7</jdk.version>
+
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+
+        <mule.version>3.8.0</mule.version>
+
+        <guavaVersion>18.0</guavaVersion>
+
+        <junit.version>4.8.2</junit.version>
+        <mockito.version>1.8.2</mockito.version>
+
+        <licensePath>LICENSE_HEADER.txt</licensePath>
+    </properties>
+
+    <modules>
+        <module>mule-interceptor-module</module>
+		<module>mule-munit-support</module>
+        <module>munit-mule-extension-loader</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <skip>${skipTests}</skip>
+                    <check>
+                        <lineRate>70</lineRate>
+                        <branchRate>44</branchRate>
+
+                        <packageLineRate>77</packageLineRate>
+                        <packageBranchRate>65</packageBranchRate>
+
+                        <totalLineRate>90</totalLineRate>
+                        <totalBranchRate>75</totalBranchRate>
+
+                        <haltOnFailure>true</haltOnFailure>
+                    </check>
+                    <instrumentation>
+                        <ignores>
+                        </ignores>
+                        <excludes>
+                            <!-- TODO: improve test over this class-->
+                            <exclude>org/mule/munit/api/spring/config/parsers/AbstractDefinitionParser*.class</exclude>
+                            <exclude>org/mule/munit/common/MunitConstants.class</exclude>
+                            <exclude>org/mule/munit/common/log/TestsLogConfigurationHelper.class</exclude>
+                            <exclude>org/mule/munit/runner/spring/config/model/*.*</exclude>
+                            <exclude>
+                                org/mule/munit/runner/spring/config/reader/MunitBeanDefinitionParserDelegate.class
+                            </exclude>
+                            <exclude>org/mule/munit/common/util/**</exclude>
+                            <!-- TODO: improve test over this class-->
+                            <exclude>org/mule/munit/common/log/**</exclude>
+                            <exclude>org/mule/munit/runner/spring/config/reader/MunitHandlerWrapper.class</exclude>
+                            <exclude>org/mule/munit/wrapped/**</exclude>
+
+                            <exclude>org/mule/munit/plugins/coverage/**</exclude>
+                            <exclude>org/mule/munit/runner/spring/config/document/*.class</exclude>
+
+                        </excludes>
+                    </instrumentation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>clean</goal>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.mycila.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <version>1.9.0</version>
+                <configuration>
+                    <header>${licensePath}</header>
+                    <excludes>
+                        <exclude>target/**</exclude>
+                        <exclude>**/.gitignore</exclude>
+                        <exclude>**/*.txt</exclude>
+                        <exclude>**/*.groovy</exclude>
+                        <exclude>**/*.sh</exclude>
+                        <exclude>**/*.bat</exclude>
+                        <exclude>**/*.ftl</exclude>
+                        <exclude>**/*.xml</exclude>
+                        <exclude>**/*.properties</exclude>
+                        <exclude>**/*.sample</exclude>
+                        <exclude>**/*.md</exclude>
+                        <exclude>**/*.xsl</exclude>
+                        <exclude>**/*.html</exclude>
+                        <exclude>**/*.css</exclude>
+                    </excludes>
+                    <includes>
+                        <include>**/*.java</include>
+                    </includes>
+                    <mapping>
+                        <java>SLASHSTAR_STYLE</java>
+                    </mapping>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.5.2</version>
+                <configuration>
+                    <check />
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <distributionManagement>
+        <repository>
+            <id>mule-releases</id>
+            <name>MuleSoft Releases Repository</name>
+            <url>https://repository-master.mulesoft.org/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>mule-snapshots</id>
+            <name>MuleSoft Snapshots Repository</name>
+            <url>https://repository-master.mulesoft.org/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>mule-releases</id>
+            <name>MuleSoft Releases Repository</name>
+            <url>https://repository-master.mulesoft.org/releases/</url>
+        </repository>
+        <repository>
+            <id>mule-snapshots</id>
+            <name>MuleSoft Snapshots Repository</name>
+            <url>https://repository-master.mulesoft.org/snapshots/</url>
+        </repository>
+    </repositories>
+
+    <scm>
+        <connection>scm:git:git://github.com:mulesoft/munit-support.git
+        </connection>
+        <developerConnection>
+            scm:git:git@github.com:mulesoft/munit-support.git
+        </developerConnection>
+        <url>http://github.com/mulesoft/munit-support</url>
+      <tag>3.8.2</tag>
+  </scm>
+
+</project>
