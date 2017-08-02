@@ -180,7 +180,7 @@
             <artifactId>munit-runner</artifactId>
             <version>${munit.version}</version>
             <scope>test</scope>
-        </dependency
+	</dependency>
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-spring-config</artifactId>
