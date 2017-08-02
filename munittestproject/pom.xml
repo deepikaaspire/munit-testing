@@ -80,20 +80,7 @@
                     </coverage>
                 </configuration>
             </plugin>
-			 <plugin>
-                <groupId>org.mule.munit.tools</groupId>
-                <artifactId>munit-maven-plugin</artifactId>
-                <version>3.7.0-RC1</version>
-                <executions>
-                    <execution>
-                        <id>test</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+			
         </plugins>
 	<testResources>
             <testResource>
@@ -125,7 +112,7 @@
 		<dependency>
                    <groupId>org.mule.munit</groupId>
                    <artifactId>munit-runner</artifactId>
-                   <version>3.7.0-RC2</version>
+                   <version>3.7.0-RC1</version>
 			<scope>test</scope>
 		</dependency> 
 		<!-- https://mvnrepository.com/artifact/org.mule.munit.tools/munit-maven-plugin -->
