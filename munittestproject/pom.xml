@@ -158,12 +158,11 @@
 		</dependency>  
 		<!-- for testing -->
 		<!-- https://mvnrepository.com/artifact/org.mule.tools/maven-mule-plugin -->
-<dependency>
-    <groupId>org.mule.tools</groupId>
-    <artifactId>maven-mule-plugin</artifactId>
-    <version>1.3</version>
-</dependency>
-		
+                <dependency>
+                   <groupId>org.mule.tools</groupId>
+                   <artifactId>maven-mule-plugin</artifactId>
+                   <version>1.3</version>
+                </dependency>
 		<dependency>
 			<groupId>org.mule.tests</groupId>
 			<artifactId>mule-tests-functional</artifactId>
@@ -176,22 +175,20 @@
             <version>${mule.munit.support.version}</version>
             <scope>test</scope>
         </dependency>
-    <dependency>
+        <dependency>
             <groupId>com.mulesoft.munit</groupId>
             <artifactId>munit-runner</artifactId>
             <version>${munit.version}</version>
             <scope>test</scope>
         </dependency
-  
-    <dependency>
+        <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-spring-config</artifactId>
             <version>3.8.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
-	<repositories>
+      <repositories>
           <repository>
             <id>Central</id>
             <name>Central</name>
