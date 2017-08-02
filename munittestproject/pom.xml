@@ -112,7 +112,7 @@
 		<dependency>
                    <groupId>org.mule.munit</groupId>
                    <artifactId>munit-runner</artifactId>
-                   <version>3.7.0-RC1</version>
+                   <version>3.6.0-RC2</version>
 			<scope>test</scope>
 		</dependency> 
 		<!-- https://mvnrepository.com/artifact/org.mule.munit.tools/munit-maven-plugin -->
